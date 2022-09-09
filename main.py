@@ -1,4 +1,5 @@
 import random
+from tkinter import Y
 
 # (5 points): As a developer, I want to make at least three commits with descriptive messages.
 # (5 points): As a developer, I want to store my destinations, restaurants, mode of transportation, 
@@ -25,11 +26,7 @@ import random
 #       each function should do just one thing!
 ##################################################################################################################################
 
-destinations = ["Canada", "Spain", "Tokyo", "London", "Fiji Island"]
-restaurants = random.choice(["Noma", "Geranium", "Asador Etxebarri", "Disfrutar Frantzén"])
-transportation_selections = random.choice(["Rolls-Royce Phantom", "Bugatti Chiron", "Private Jet", "Public Plane", "Helicopter"])
-entertainment_selections = random.choice(["Skydiving", "Concert", "Mountain Climbing", "Space Walk", "Escape Island"])
-
+# These def allows for randome choices.
 def trip_destination(places):
     places = random.choice(places)
     return places
@@ -49,13 +46,14 @@ def trip_entertainment(activities):
     activities = random.choice(activities)
     return activities
 
-
+# These def process the user input and validates the correct choice.
 def destination_choice(answer):
     invalid = True
     while invalid == True:
-        choice = input("Would you like this trip? (Y/N) ")
+        choice = input("Would you like to keep this destination selection? (Y/N) ")
         if choice == "Y" or choice == "y":
-            print("Have a safe Trip! (^_^) ")
+            print("Confirmed")
+            print()
             answer = False
             invalid = False
         elif choice == "N" or choice == "n":
@@ -64,41 +62,37 @@ def destination_choice(answer):
             invalid = False
         elif choice != "Y" or choice != "y" or choice != "N" or choice != "n":
             print("Invalid choice please try again! ")
-            answer = True
             invalid = True
     return answer
 
 
-def transportation_choice(cont):
+def transportation_choice(answer):
     invalid = True
     while invalid == True:
-        choice = input("Do you wish to change your mode of transportation? (Y/N) ")
+        choice = input("Do you wish to keep this transportation selection? (Y/N) ")
         if choice == "Y" or choice == "y":
-            print("Happy travels! (^_^) ")
+            print("Confirmed")
             print()
             answer = False
             invalid = False
         elif choice == "N" or choice == "n":
             print("Let Us please reselect this for you. ")
-            print()
             answer = True
             invalid = False
         elif choice != "Y" or choice != "y" or choice != "N" or choice != "n":
             print("Invalid choice please try again! ")
             print()
-            answer = True
             invalid = True
     return answer
-
-
 
 
 def restaurants_choice(answer):
     invalid = True
     while invalid == True:
-        choice = input("Would you like another choice? (Y/N) ")
+        choice = input("Would you like to keep this restaurant choice? (Y/N) ")
         if choice == "Y" or choice == "y":
-            print("This is a great choice (^_^) ")
+            print("Confirmed")
+            print()
             answer = False
             invalid = False
         elif choice == "N" or choice == "n":
@@ -107,84 +101,81 @@ def restaurants_choice(answer):
             invalid = False
         elif choice != "Y" or choice != "y" or choice != "N" or choice != "n":
             print("Invalid choice please try again! ")
-            answer = True
             invalid = True
     return answer
-
-
-
 
 
 def entertainment_choice(answer):
     invalid = True
     while invalid == True:
-        choice = input("Would like to change your entertainment (Y/N) ")
+        choice = input("Would like to keep entertainment selection? (Y/N) ")
         if choice == "Y" or choice == "y":
-            print("Have a safe Trip! (^_^) ")
+            print("Confirmed")
+            print()
             answer = False
             invalid = False
         elif choice == "N" or choice == "n":
+
             print("Let Us please reselect this for you. ")
             answer = True
             invalid = False
         elif choice != "Y" or choice != "y" or choice != "N" or choice != "n":
             print("Invalid choice please try again! ")
-            answer = True
+
             invalid = True
     return answer
 
+destinations = ["Canada", "Spain", "Tokyo", "London", "Fiji Island"]
+restaurants = ["Noma", "Geranium", "Asador Etxebarri", "Disfrutar Frantzén", "McDonalds"]
+transportation_selections = ["Rolls-Royce Phantom", "Bugatti Chiron", "Private Jet", "Public Plane", "Helicopter"]
+entertainment_selections = ["Skydiving", "Concert", "Mountain Climbing", "Space Walk", "Escape Island"]
 
 
-
-
-
-
+# The main program.
 cont = True
 while cont == True:
     print()
     trip_location = trip_destination(destinations)
-    print("Your destination is",trip_location )
+    print("The destination choosen is {}!".format(trip_location))
     cont = destination_choice(cont)
-
-cont = True
-while cont == True:
+    if cont == True:
+        destinations.remove(trip_location)
+    elif cont == False:
+        print("********************************************************")
+        
+cont_1 = True
+while cont_1 == True:
     print()
     trip_ride = trip_tranportation(transportation_selections)
-    print("Your destination is",trip_ride)
-    cont = transportation_choice(cont)
+    print("Your transportation would be a {}!".format(trip_ride))
+    cont_1 = transportation_choice(cont_1)
+    if cont_1 == True:
+        transportation_selections.remove(trip_ride)
+    elif cont_1 == False:
+        print("********************************************************")
 
-cont = True
-while cont == True:
+cont_2 = True
+while cont_2  == True:
     print()
     trip_food = trip_restaurants(restaurants)
-    print("Your destination is",trip_location )
-    cont = restaurants_choice(cont)
+    print("You will dine at {}!".format(trip_food))
+    cont_2  = restaurants_choice(cont_2)
+    if cont_2  == True:
+        restaurants.remove(trip_food)
+    elif cont_2  == False:
+        print("********************************************************")
 
-cont = True
-while cont == True:
+cont_3 = True
+while cont_3 == True:
     print()
     trip_fun = trip_entertainment(entertainment_selections)
-    print("Your destination is",trip_location )
-    cont = entertainment_choice(cont)
+    print("The activity choosen is a {}!".format(trip_fun))
+    cont_3 = entertainment_choice(cont_3 )
+    if cont_3 == True:
+        entertainment_selections.remove(trip_fun)
+    elif cont_3 == False:
+        print("********************************************************")
 
-
-
-print("Have fun with your", trip_fun, "staying in" , trip_location , "while driving a", trip_ride, "and dining at",trip_food)
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print()
+print("Your entertainment will be a {} and you will travel to {} while being transported by a(n) {} and dining at {}.".format(trip_fun, trip_location, trip_ride, trip_food))
+print() 
