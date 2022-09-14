@@ -1,5 +1,3 @@
-import random
-
 # (5 points): As a developer, I want to make at least three commits with descriptive messages.
 # (5 points): As a developer, I want to store my destinations, restaurants, mode of transportation, 
         # and entertainment selections in their own separate lists.
@@ -18,6 +16,7 @@ import random
 # (5 points): As a developer, I want all of my functions to have a Single Responsibility. Remember, 
 #       each function should do just one thing!
 ##################################################################################################################################
+import random
 
 
 destinations = ["Canada", "Spain", "Tokyo", "London", "Fiji Island"]
@@ -102,6 +101,9 @@ def reselect_trip(trip_option, new):
 
 
 run_day_trip_plan()
+
+
+
 
 
 
