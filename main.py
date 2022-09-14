@@ -30,7 +30,8 @@ def run_day_trip_plan():
     restaurant = generate_random_plan(restaurants)
     transportation = generate_random_plan(transportation_selections)
     entertainment = generate_random_plan(entertainment_selections)
-    trip_plan = [des, res, tra, ent]
+    trip_plan = [destination, restaurant, transportation, entertainment]
+    print()
     print_full_trip(trip_plan)
     print()
     trip_confirmation(destination, restaurant, transportation, entertainment)
@@ -41,12 +42,12 @@ def trip_confirmation(destination, restaurant, transportation, entertainment):
         cont = True
         while cont == True:
             select = input("Are you satisfied with the selections? (Y/N) ")
-            if select == "n":
-                trip_option = input("Which would you like to change: Destination, Resataurant, Transportation, or Entertainment? ")
+            if select == "n" or select == "N":
+                trip_option = input("Which would you like to change: Destination, Restaurant, Transportation, or Entertainment? ")
                 print()
                 reselect_trip(trip_option, trip_plan)
                 cont = True              
-            elif select == "y":
+            elif select == "y" or select == "Y":
                 print()
                 print("Here's is your final list: ")
                 print_full_trip(trip_plan)
